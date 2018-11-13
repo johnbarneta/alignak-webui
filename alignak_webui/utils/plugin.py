@@ -1004,13 +1004,21 @@ class Plugin(object):
                 dict_values = {}
                 for item in value:
                     splitted = item.split('|')
+                    if '=' in item:
+                        splitted = item.split('=')
+                    if not splitted:
+                        logger.warning("- field: %s, bad formated value: %s", field, item)
+                        continue
+
                     try:
                         splitted[0] = splitted[0].decode('utf8')
                     except AttributeError:
+                        logger.warning("- field: %s, bad value: %s", field, item)
                         pass
                     try:
                         splitted[1] = splitted[1].decode('utf8')
                     except AttributeError:
+                        logger.warning("- field: %s, bad value: %s", field, item)
                         pass
                     dict_values.update({splitted[0]: splitted[1]})
                 value = dict_values
@@ -1025,13 +1033,21 @@ class Plugin(object):
                     dict_values = {}
                     for item in value:
                         splitted = item.split('|')
+                        if '=' in item:
+                            splitted = item.split('=')
+                        if not splitted:
+                            logger.warning("- field: %s, bad formated value: %s", field, item)
+                            continue
+
                         try:
                             splitted[0] = splitted[0].decode('utf8')
                         except AttributeError:
+                            logger.warning("- field: %s, bad value: %s", field, item)
                             pass
                         try:
                             splitted[1] = splitted[1].decode('utf8')
                         except AttributeError:
+                            logger.warning("- field: %s, bad value: %s", field, item)
                             pass
                         dict_values.update({splitted[0]: splitted[1]})
                     value = [dict_values]
