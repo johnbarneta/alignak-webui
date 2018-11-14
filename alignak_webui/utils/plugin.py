@@ -1013,7 +1013,7 @@ class Plugin(object):
                         splitted[1] = splitted[1].decode('utf8')
                     except AttributeError:
                         logger.warning("- field: %s, bad value: %s", field, item)
-                        pass
+                        continue
 
                     dict_values.update({splitted[0]: splitted[1]})
                 value = dict_values
@@ -1039,7 +1039,7 @@ class Plugin(object):
                             splitted[1] = splitted[1].decode('utf8')
                         except AttributeError:
                             logger.warning("- field: %s, bad value: %s", field, item)
-                            pass
+                            continue
 
                         dict_values.update({splitted[0]: splitted[1]})
                     value = [dict_values]
